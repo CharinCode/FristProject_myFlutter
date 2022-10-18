@@ -56,6 +56,13 @@ class _SingUpPageState extends State<SingUpPage> {
             labelText: 'Email :',
             labelStyle: TextStyle(color: Colors.green),
             helperText: 'Type Your Email'),
+        validator: (value) {
+          if (!((value!.contains(('@'))) && (value!.contains('.')))) {
+            return 'Please Type Email in Emial Format Exp. you@emal.com';
+          } else {
+            return null;
+          }
+        },
       );
     }
 
@@ -69,6 +76,13 @@ class _SingUpPageState extends State<SingUpPage> {
             labelText: 'Password :',
             labelStyle: TextStyle(color: Colors.black),
             helperText: 'Type Your password mor 6 Charactor'),
+        validator: (value) {
+          if (value!.length < 6) {
+            return 'Password more 6 Charactor';
+          } else {
+            return null;
+          }
+        },
       );
     }
 
