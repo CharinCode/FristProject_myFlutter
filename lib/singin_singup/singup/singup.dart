@@ -8,14 +8,19 @@ class SingUpPage extends StatefulWidget {
 }
 
 class _SingUpPageState extends State<SingUpPage> {
+  final _fromkey = GlobalKey<FormState>();
   @override
   Widget build(BuildContext context) {
     Widget resgisterButton() {
       return IconButton(
+        icon: const Icon(Icons.cloud_upload),
         onPressed: () {
           print('You click Upload');
+          if (_fromkey.currentState!.validate()) {
+            _fromkey.currentState!.save();
+          }
+          ;
         },
-        icon: const Icon(Icons.cloud_upload),
       );
     }
 
@@ -30,6 +35,13 @@ class _SingUpPageState extends State<SingUpPage> {
             labelText: 'Display Name :',
             labelStyle: TextStyle(color: Colors.blue),
             helperText: 'Type Your Nick Name For Display'),
+        validator: (value) {
+          if (value!.isEmpty) {
+            return 'Please Fill Your name in the blak';
+          } else {
+            return null;
+          }
+        },
       );
     }
 
@@ -69,11 +81,14 @@ class _SingUpPageState extends State<SingUpPage> {
         ),
         actions: <Widget>[resgisterButton()],
       ),
-      body: ListView(padding: EdgeInsets.all(30.0), children: <Widget>[
-        nameText(),
-        emailText(),
-        passwordText(),
-      ]),
+      body: Form(
+        key: _fromkey,
+        child: ListView(padding: EdgeInsets.all(30.0), children: <Widget>[
+          nameText(),
+          emailText(),
+          passwordText(),
+        ]),
+      ),
     );
   }
 }
