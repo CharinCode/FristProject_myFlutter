@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_core/firebase_core.dart';
 
 class SingUpPage extends StatefulWidget {
   const SingUpPage({super.key});
@@ -9,8 +11,25 @@ class SingUpPage extends StatefulWidget {
 
 class _SingUpPageState extends State<SingUpPage> {
   final _fromkey = GlobalKey<FormState>();
+  late String nameString, emailString, passwordString;
+
   @override
   Widget build(BuildContext context) {
+    //
+    Future<void> registerThread() async {
+      FirebaseAuth firebaseAuth = FirebaseAuth.instance;
+      await firebaseAuth
+          .createUserWithEmailAndPassword(
+              email: emailString, password: passwordString)
+          .then((response) {
+        print('Register Success for Email = $emailString');
+      }).catchError((response) {
+        String title = response.code;
+        String message = response.message;
+        print('title = $title , message = $message');
+      });
+    }
+
     Widget resgisterButton() {
       return IconButton(
         icon: const Icon(Icons.cloud_upload),
@@ -18,6 +37,9 @@ class _SingUpPageState extends State<SingUpPage> {
           print('You click Upload');
           if (_fromkey.currentState!.validate()) {
             _fromkey.currentState!.save();
+            print(
+                'name = $nameString email = $emailString password = $passwordString');
+            registerThread();
           }
           ;
         },
@@ -42,6 +64,9 @@ class _SingUpPageState extends State<SingUpPage> {
             return null;
           }
         },
+        onSaved: (newValue) {
+          nameString = newValue!.trim();
+        },
       );
     }
 
@@ -63,6 +88,7 @@ class _SingUpPageState extends State<SingUpPage> {
             return null;
           }
         },
+        onSaved: (newValue) => emailString = newValue!.trim(),
       );
     }
 
@@ -82,6 +108,9 @@ class _SingUpPageState extends State<SingUpPage> {
           } else {
             return null;
           }
+        },
+        onSaved: (newValue) {
+          passwordString = newValue!.trim();
         },
       );
     }

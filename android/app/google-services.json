@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "686459163571",
+    "project_id": "fristproject-96ad3",
+    "storage_bucket": "fristproject-96ad3.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:686459163571:android:11eca50a1c12a7087db1c6",
+        "android_client_info": {
+          "package_name": "com.example.fluuter_prooject"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "686459163571-13g6n13dp3d8otrn7ikt3f2gf912avpi.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCN1H8cNGNkblr5Mq-6tixeT5eacBQAkf0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "686459163571-13g6n13dp3d8otrn7ikt3f2gf912avpi.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
